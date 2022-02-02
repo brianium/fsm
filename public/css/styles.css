@@ -1,0 +1,123 @@
+:root {
+    --font-color: #444;
+    --font-family: 'Libre Baskerville', serif;
+    --button-primary-bg: #AFC4FF;
+    --button-primary-bg-hover: #A6BAF2;
+    --button-primary-bg-active: #9EB0E6;
+}
+
+::placeholder {
+    color: #efefef !important;
+}
+
+html {
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    color: var(--font-color);
+    font-family: var(--font-family);
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+pre {
+    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+    overflow-x: auto;
+    padding: 0.2em 2em;
+    white-space: pre-wrap;
+    width: 100%;
+}
+
+/** Application **/
+
+.application {
+    background-color: #efefef;
+    height: 100%;
+}
+
+.app__column {
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    width: 50%;
+}
+
+.app__column--flex-start {
+    justify-content: flex-start;
+}
+
+.fsm_state {
+    background-color: #efefef;
+    overflow-y: auto;
+}
+
+#application {
+    height: 100%;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content:start;
+    height: 75%;
+}
+
+
+.counter {
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    display: flex;
+    padding: 2em;
+    flex-direction: column;
+    align-items: center;
+}
+
+.counter__value {
+    background-color: #efefef;
+    border-radius: 4px;
+    width: 100%;
+    padding: 0.2em 0.4em;
+}
+
+.counter__buttons button {
+    background-color: cornflowerblue;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 1em 2em;
+    transition: background-color 400ms;
+}
+
+.counter__buttons button:hover {
+    background-color: rgb(74, 131, 238);
+}
+
+.counter__buttons button:disabled {
+    background-color: #ccc;
+}
+
+.counter__buttons button + button {
+    margin-left: 0.4em;
+}
+
+#audit-log {
+    background-color: #fff;
+    box-shadow: 0 -1px 1px rgba(0,0,0,0.1);
+    bottom: 0;
+    height: 25%;
+    overflow-y: auto;
+    padding-left: 1em;
+    position: fixed;
+    width: 50%;
+}
