@@ -1,0 +1,3 @@
+^{:watch-dirs ["src/cljc" "dev/cljs"]
+  :css-dirs   ["resources/public/css"]}
+{:main fsm.dev}
