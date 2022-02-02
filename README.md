@@ -18,6 +18,7 @@ Yet another finite state machine library for Clojure(Script).
   - [create-state-machine](#create-state-machine)
   - [transition](#transition)
   - [add-effect](#add-effect)
+  - [StateMachine](#statemachine)
 
 ### Using fsm
 
@@ -83,4 +84,31 @@ Allows you to do things in response to state changes. All effects must be named 
 ;;; Do something when the state machine moves from one of the given set to an explicit state, in this case
 ;;; when the state machine reaches a nil state from the ready OR enabled state
 (fsm/add-effect state-machine ::shutdown #{::ready ::enabled} nil on-shutdown)
+```
+
+#### StateMachine
+
+The default implementation for this library is backed by atoms. A custom implementation can be supported by
+implementing the `StateMachine` protocol. The atom backed one may serve as a good example:
+
+```clojure
+(ns fsm.impl
+  (:require [fsm.protocols :as p]))
+
+(defrecord AtomStateMachine [states *state]
+  p/StateMachine
+  (-transition [_ event payload]
+    (let [current @*state
+          next    (get-in states [(:fsm/state current) event] ::not-found)]
+      (when-not (= ::not-found next)
+        (->> payload
+             (merge {:fsm/state next})
+             (reset! *state)))))
+
+  (-add-effect [this key fn-3]
+    (add-watch *state key (fn [_ _ old new]
+                            (fn-3 this old new))))
+
+  (-current-state [_]
+    @*state))
 ```

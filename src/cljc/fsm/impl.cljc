@@ -23,6 +23,7 @@
    (->> (if (fn? payload)
           (payload sm)
           payload)
+        (#(dissoc % :fsm/state))
         (#(merge % {:fsm/last-event event}))
         (p/-transition sm event))
    sm)
@@ -40,9 +41,9 @@
   p/StateMachine
   (-transition [_ event payload]
     (let [current @*state
-          next    (get-in states [(:fsm/state current) event])]
-      (when (some? next)
-        (->> (dissoc payload :fsm/state)
+          next    (get-in states [(:fsm/state current) event] ::not-found)]
+      (when-not (= ::not-found next)
+        (->> payload
              (merge {:fsm/state next})
              (reset! *state)))))
 
