@@ -6,6 +6,7 @@
   (cond
     (set? prev) (prev state)
     (keyword? prev) (= prev state)
+    (nil? prev) (nil? state)
     :else nil))
 
 (defn add-effect
