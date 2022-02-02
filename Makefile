@@ -6,5 +6,5 @@ target/public:
 	clj -M:web/dev:web/demo
 	clj -T:build copy-public
 
-target/vocloj.jar:
+target/fsm.jar:
 	clj -T:build jar

@@ -12,6 +12,8 @@
 
 Yet another finite state machine library for Clojure(Script).
 
+[![cljdoc badge](https://cljdoc.org/badge/com.github.brianium/fsm)](https://cljdoc.org/d/com.github.brianium/fsm/CURRENT) [![Clojars Project](https://img.shields.io/clojars/v/com.github.brianium/fsm.svg)](https://clojars.org/com.github.brianium/fsm)
+
 ## Table of contents
 
 - [Using fsm](#using-fsm)
