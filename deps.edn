@@ -10,6 +10,11 @@
                                    :pom-file  "target/classes/META-INF/maven/com.github.brianium/fsm/pom.xml"}}
            :format   {:extra-deps {cljfmt/cljfmt {:mvn/version "0.8.0"}}
                       :main-opts  ["-m" "cljfmt.main"]}
+           :test {:extra-paths ["test"]
+                  :extra-deps {io.github.cognitect-labs/test-runner
+                               {:git/tag "v0.5.0" :git/sha "b3fd0d2"}}
+                  :main-opts ["-m" "cognitect.test-runner"]
+                  :exec-fn cognitect.test-runner.api/test}
            :web/dev  {:extra-deps  {cljsjs/react              {:mvn/version "17.0.2-0"}
                                     cljsjs/react-dom          {:mvn/version "17.0.2-0"}
                                     com.bhauman/figwheel-main {:mvn/version "0.2.15"}
