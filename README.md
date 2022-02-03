@@ -21,6 +21,7 @@ Yet another finite state machine library for Clojure(Script).
   - [transition](#transition)
   - [add-effect](#add-effect)
   - [StateMachine](#statemachine)
+- [Demo](https://brianium.github.io/fsm/)
 
 ### Using fsm
 
@@ -53,6 +54,14 @@ You can use this state description to make a new state machine:
 ```
 
 Your state map will automatically have an `:fsm/state` key added with the named state - i.e `::ready`, `::enabled`, etc. It will also contain an `:fsm/last-event` key containing the last event.
+
+A third argument can be provided which is an `atom-fn` that is used. Defaults to `atom`
+
+```clojure
+(require '[reagent.core :as r])
+
+(def state-machine (fsm/create-state-machine states initial-state r/atom))
+```
 
 #### transition
 
