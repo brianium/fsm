@@ -43,9 +43,6 @@
 (defn transition
   "Transition a state machine using the given event and an optional payload.
    
-   transition is mostly used within vocloj implementations, but may be useful
-   in other circumstances. I don't know. I can't predict the future one bit.
-   
    The payload can be a hash map (or nil) or a function that returns a hash map (or nil). If a function, the
    payload must be a function of 1 arg: the state machine itself.
    
@@ -71,15 +68,10 @@
    (impl/transition sm event)))
 
 (defn current-state
-  "Returns the in-transaction-value of the state machine's underlying
-   ref.
-   
-   This can be useful if the given implementation stores state that may be useful
-   to a user. For instance the speech synthesizer implementation in vocloj.web provides
-   access to support voices:
+  "Returns the current state of the given state machine as a hash map.
    
    ```clojure
-   (-> synth current-state :data :voices)
+   (-> state-machine current-state :count)
    ```"
   [sm]
   (impl/current-state sm))
