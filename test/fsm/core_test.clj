@@ -52,4 +52,11 @@
           (transition ::init)
           (transition ::start)
           (transition ::stop))
-      (is (= @*audit [::ready ::started])))))
+      (is (= @*audit [::ready ::started]))))
+  (testing "effect is invoked when nil part of from set"
+    (let [*audit (atom [])
+          fsm    (create-state-machine states initial-state)]
+      (-> fsm
+          (add-effect ::ready #{nil} ::ready (fn [_ _ new] (swap! *audit conj (:fsm/last-event new))))
+          (transition ::init {:init? true}))
+      (is (= @*audit [::init])))))

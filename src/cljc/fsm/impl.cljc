@@ -4,7 +4,7 @@
 (defn from?
   [prev state]
   (cond
-    (set? prev) (prev state)
+    (set? prev) (contains? prev state)
     (keyword? prev) (= prev state)
     (nil? prev) (nil? state)
     :else nil))
